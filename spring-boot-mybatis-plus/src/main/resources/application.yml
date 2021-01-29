@@ -1,0 +1,27 @@
+server:
+  port: 8010
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hello?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&autoReconnect=true&useServerPrepStmts=true&cachePrepStmts=true&serverTimezone=GMT%2b8
+    username: root
+    password: 123456
+  jackson: # 返回Json的全局时间格式
+    date-format: "yyyy-MM-dd HH:mm:ss"
+    time-zone: "GMT+8"
+mybatis-plus:
+  mapper-locations: classpath*:com.stephen.demo.mapper/**Mapper.x配置别名包扫描路径ml
+  type-aliases-package: com.stephen.demo.entity #
+  configuration:
+    map-underscore-to-camel-case: true # 开启驼峰命名
+  global-config:
+    refresh: false # 自动刷新mapper对应的xml文件
+    db-config:
+      id-type: auto # 主键策略为自增
+      field-strategy: not-null # 字段非null判断
+      db-type: mysql # 数据库类型
+      table-underline: true # 下划线命名策略
+      table-prefix:  # 表名前缀
+logging:
+  level:
+    com.stephen.demo.mapper: debug # 打印sql
