@@ -3,7 +3,6 @@ package com.stephen.demo.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stephen.demo.common.ListResult;
 import com.stephen.demo.entity.Users;
-import com.stephen.demo.mapper.UserMapper;
 import com.stephen.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,6 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final UserMapper userMapper;
 
     @GetMapping("list")
     public Object list(@RequestParam int current,@RequestParam int pageSize) {
