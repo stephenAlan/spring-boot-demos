@@ -23,6 +23,8 @@
 
     <modules>
         <module>spring-boot-mybatis-plus</module>
+        <module>spring-boot-redis</module>
+        <module>spring-boot-shardingjdbc</module>
     </modules>
 
     <build>

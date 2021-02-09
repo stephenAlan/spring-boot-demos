@@ -1,0 +1,38 @@
+sharding:
+  jdbc:
+    datasource:
+      # 配置数据源,多个用逗号分隔
+      names: db-master,db-slave
+      db-master:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://192.168.158.129:3306/coolsummermoon?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMT
+        username: root
+        password: 123456
+        maxPoolSize: 20
+      db-slave:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://192.168.158.131:3306/coolsummermoon?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMT
+        username: root
+        password: 123456
+        maxPoolSize: 20
+    config:
+      # 配置主从信息
+      masterslave:
+        # 配置负载均衡
+        load-balance-algorithm-type: round_robin
+        name: db1s1
+        # 配置主数据源，多个用逗号分隔
+        master-data-source-name: db-master
+        # 配置从数据源，多个用逗号分隔
+        slave-data-source-names: db-slave
+    props:
+      sql:
+        # 打印sql信息
+        show: true
+server:
+  port: 8010
+mybatis:
+  type-aliases-package: com.comcoolsummermoon.entity
+  mapper-locations: classpath:mapper/*.xml
